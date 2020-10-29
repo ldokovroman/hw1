@@ -26,7 +26,7 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
 			x = (x - 65 - shift) % 26 + 65 
 		elif 97 <= x <= 122:
 			x = (x - 97 - shift) % 26 + 97
-	plaintext += chr(x)
+		plaintext += chr(x)
   
 	return plaintext
 
