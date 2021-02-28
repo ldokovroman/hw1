@@ -47,6 +47,7 @@ class GameOfLife:
             for event in pygame.event.get():
                 if event.type == QUIT:
                     running = False
+            self.screen.fill(pygame.Color('white'))
             self.draw_lines()
             self.draw_grid()
             self.grid = self.get_next_generation()
@@ -85,9 +86,9 @@ class GameOfLife:
     def get_neighbours(self, cell: Cell) -> Cells:
 
         cells = []
-        for i in range(cell[1] - 1, cell[1] + 2):
-            for j in range(cell[0] - 1, cell[0] + 2):
-                if 0 <= i < self.cell_height and 0 <= j < self.cell_width and not(i == cell[1] and j == cell[0]):
+        for i in range(cell[0] - 1, cell[0] + 2):
+            for j in range(cell[1] - 1, cell[1] + 2):
+                if 0 <= i < self.cell_height and 0 <= j < self.cell_width and not(i == cell[0] and j == cell[1]):
                     cells.append(self.grid[i][j])
         return cells
         
@@ -95,9 +96,8 @@ class GameOfLife:
     def get_next_generation(self) -> Grid:
 
         new_grid = self.create_grid()
-
-        for i in range(len(new_grid)):
-            for j in range(len(new_grid[i])):
+        for i in range(self.cell_height):
+            for j in range(self.cell_width):
                 k = sum(self.get_neighbours((i, j)))
                 if self.grid[i][j] == 0:
                     if k == 3:
