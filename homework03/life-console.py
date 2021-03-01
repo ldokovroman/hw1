@@ -50,7 +50,7 @@ class Console(UI):
         self.screen = curses.initscr()
         curses.noecho()
         curses.cbreak()
-        while self.life.is_changing() and self.life.is_max_generations_exceeded():
+        while True:
             self.screen.erase()
             self.draw_borders(self.screen)
             self.draw_grid(self.screen)

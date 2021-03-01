@@ -49,13 +49,20 @@ class GUI(UI):
         pygame.display.set_caption('Game of Life')
         self.screen.fill(pygame.Color('white'))
         running = True
-        pausa=False
+        pausa = False
         while running:
+            
+            if not pausa:
+                self.draw_grid()
+                self.draw_lines()
+                pygame.display.flip()
+                clock.tick(self.speed)
+                self.life.step()
             for event in pygame.event.get():
                 if event.type == QUIT:
                     running = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if event.button==1:
+                    if event.button == 1:
                         x_mouse, y_mouse = pygame.mouse.get_pos()
                         column = x_mouse // self.cell_size
                         row = y_mouse // self.cell_size
@@ -68,17 +75,12 @@ class GUI(UI):
                         self.draw_lines()
                         pygame.display.flip()
                 if event.type == pygame.KEYDOWN:
-                    if event.key==K_SPACE:
-                        pausa = not pausa
-            if not pausa and self.lifeis_max_generations_exceeded and self.life.is_changing:
-                self.draw_grid()
-                self.draw_lines()
-                pygame.display.flip()
-                clock.tick(self.speed)
-                self.life.step()
+                    if event.key == K_SPACE:
+                        pausa = not pausa             
+            
 
-life = GameOfLife((250, 250),False)
-gui = GUI(life, 20)
+life = GameOfLife((500, 500), True)
+gui = GUI(life, 50)
 gui.run()
 
 
