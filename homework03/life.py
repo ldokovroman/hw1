@@ -110,14 +110,14 @@ class GameOfLife:
         f.close()
 
 
-random.seed(1234)       
-life = GameOfLife((5, 5))
-print(life.curr_generation)
+#random.seed(1234)       
+#life = GameOfLife((5, 5))
+#print(life.curr_generation)
 #print(life.from_file(pathlib.Path('grid.txt')))
 #life.save(pathlib.Path('save.txt'))
-life.step()
-print(life.prev_generation)
-print(life.curr_generation)
+#life.step()
+#print(life.prev_generation)
+#print(life.curr_generation)
 
 
         
